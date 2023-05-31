@@ -33,6 +33,13 @@ function Login() {
   const shadow = {
     boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
   };
+  const submit = async() => {
+    setform({
+      email,
+      password
+    });
+    //TODO: post req for login
+  }
   return (
     <Box h={"100vh"}>
       <Image
@@ -95,7 +102,7 @@ function Login() {
                 justify={'flex-end'}>
                 <Link color={'blue.400'}>Forgot password?</Link>
               </Stack>
-          <Button rounded={"25px"} bgColor={"#035fb2 "} w={"40%"} color={"white"}>Login</Button>
+          <Button onClick={submit} rounded={"25px"} bgColor={"#035fb2 "} w={"40%"} color={"white"}>Login</Button>
         </Flex>
       </Flex>
     </Box>
