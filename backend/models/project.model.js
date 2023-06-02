@@ -11,7 +11,7 @@ const projectSchema = new mongoose.Schema({
     priority: {required: true, type: String},
     department: {required: true, type: String},
     location: {required: true, type: String},
-    status: {required: true, type: String, enum: ["registered", "running", "closed"]}
+    status: {required: true, default:"registered", type: String, enum: ["registered", "running", "closed"]}
 });
 
 const Project = mongoose.model("projects", projectSchema);

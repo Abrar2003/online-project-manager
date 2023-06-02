@@ -19,6 +19,7 @@ function Navbar() {
       align={"center"}
       justify={"space-evenly"}
       bg={"white"}
+      display={["none", "none", "flex", "flex"]}
     >
       <Stack gap={"30px"}>
         {location.pathname == "/dashboard" ? (

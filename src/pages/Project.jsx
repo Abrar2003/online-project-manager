@@ -10,13 +10,62 @@ import {
   Stack,
   Text,
   Textarea,
-  Icon
+  Icon,
 } from "@chakra-ui/react";
 import { MdArrowBackIosNew } from "react-icons/md";
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "../components/Navbar";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Project() {
+  const initialForm = {
+    title: "",
+    reason: "",
+    type: "",
+    division: "",
+    category: "",
+    priority: "",
+    department: "",
+    startDate: "",
+    endDate: "",
+    location: "",
+  };
+  const navigate = useNavigate();
+  const [form, setForm] = useState(initialForm);
+  const onChange = (e) => {
+    const { name: key, value, type, valueAsNumber } = e.target;
+    const val = type == "date" ? valueAsNumber : value;
+    setForm({
+      ...form,
+      [key]: val,
+    });
+  };
+  const onSubmit = async () => {
+    for (let key in form) {
+      if (form[key] == "") {
+        alert("please fill all the fields");
+        return;
+      }
+      if (form.startDate > form.endDate) {
+        alert("Start date cannot be less than End date");
+        return;
+      }
+    }
+    try {
+      let res = await axios.post(
+        "http://localhost:8080/project/new-project",
+        form
+      );
+      if (res.data.success) {
+        navigate("/project-list");
+      }
+    } catch (err) {
+      alert(
+        "Project not saved due to some technical error try again some time later"
+      );
+    }
+  };
   return (
     <Box bgColor="#eef2f5" boxSizing="border-box" h={"100vh"}>
       <Navbar />
@@ -32,12 +81,15 @@ function Project() {
           gap={"40px"}
           boxSizing="border-box"
         >
-          <Flex
-            w={"90%"}
-            align={"center"}
-            gap={"35%"}
-          >
-            <Flex justify={"center"} align={"center"} gap={"10px"} fontSize={"2xl"} fontWeight={"bold"} color={"white"}>
+          <Flex w={"90%"} align={"center"} gap={"35%"}>
+            <Flex
+              justify={"center"}
+              align={"center"}
+              gap={"10px"}
+              fontSize={"2xl"}
+              fontWeight={"bold"}
+              color={"white"}
+            >
               <MdArrowBackIosNew />
               Create Project
             </Flex>
@@ -46,20 +98,26 @@ function Project() {
             </Box>
           </Flex>
           <Stack
-            gap={"60px"}
+            gap={"40px"}
             w={"90%"}
             m={"auto"}
             bg={"white"}
-            rounded={"50px"}
+            rounded={"25px"}
             h={"700px"}
             boxSizing="border-box"
             p={"2rem"}
+            display={["none", "none", "flex", "flex"]}
           >
             <Flex justify={"space-between"}>
               <Box w="50%">
-                <Textarea placeholder="Enter Project Theme" />
+                <Textarea
+                  onChange={onChange}
+                  name="title"
+                  placeholder="Enter Project Theme"
+                />
               </Box>
               <Button
+                onClick={onSubmit}
                 bg={"#035fb2"}
                 color={"white"}
                 width={"10%"}
@@ -69,75 +127,131 @@ function Project() {
                 Save Project
               </Button>
             </Flex>
-            <Grid gap={"30px"} templateColumns={"repeat(3, 1fr)"}>
+            <Grid
+              rowGap={"15px"}
+              columnGap={"40px"}
+              width={"90%"}
+              templateColumns={"repeat(3, 1fr)"}
+            >
               <Box>
                 <FormLabel>Reason</FormLabel>
-                <Select size={"lg"}>
-                  <option>For Business</option>
-                  <option>For Personal</option>
+                <Select
+                  size={"lg"}
+                  placeholder="Select the Reason"
+                  name="reason"
+                  onChange={onChange}
+                >
+                  <option value={"Business"}>For Business</option>
+                  <option value={"Transport"}>For Transport</option>
+                  <option value={"Dealership"}>For Dealership</option>
                 </Select>
               </Box>
               <Box>
                 <FormLabel>Type</FormLabel>
-                <Select size={"lg"}>
-                  <option>Internal</option>
-                  <option>External</option>
+                <Select
+                  size={"lg"}
+                  placeholder="Select the Type"
+                  name="type"
+                  onChange={onChange}
+                >
+                  <option value={"Internal"}>Internal</option>
+                  <option value={"External"}>External</option>
+                  <option value={"Vendor"}>Vendor</option>
                 </Select>
               </Box>
               <Box>
                 <FormLabel>Division</FormLabel>
-                <Select size={"lg"}>
-                  <option>Filter</option>
-                  <option>Compressor</option>
-                  <option>Pumps</option>
-                  <option>Glass</option>
+                <Select
+                  size={"lg"}
+                  placeholder="Select the Division"
+                  name="division"
+                  onChange={onChange}
+                >
+                  <option value={"Filter"}>Filter</option>
+                  <option value={"Compressor"}>Compressor</option>
+                  <option value={"Pump"}>Pumps</option>
+                  <option value={"Glass"}>Glass</option>
                 </Select>
               </Box>
               <Box>
                 <FormLabel>Category</FormLabel>
-                <Select size={"lg"}>
-                  <option>Quality A</option>
-                  <option>Quality B</option>
-                  <option>Quality C</option>
-                  <option>Quality D</option>
+                <Select
+                  size={"lg"}
+                  placeholder="Select the Category"
+                  name="category"
+                  onChange={onChange}
+                >
+                  <option value={"A"}>Quality A</option>
+                  <option value={"B"}>Quality B</option>
+                  <option value={"C"}>Quality C</option>
+                  <option value={"D"}>Quality D</option>
                 </Select>
               </Box>
               <Box>
                 <FormLabel>Priority</FormLabel>
-                <Select size={"lg"}>
-                  <option>High</option>
-                  <option>Medium</option>
-                  <option>Low</option>
+                <Select
+                  size={"lg"}
+                  placeholder="Select the Priority"
+                  name="priority"
+                  onChange={onChange}
+                >
+                  <option value={"High"}>High</option>
+                  <option value={"Medium"}>Medium</option>
+                  <option value={"Low"}>Low</option>
                 </Select>
               </Box>
               <Box>
                 <FormLabel>Department</FormLabel>
-                <Select size={"lg"}>
-                  <option>Strategy</option>
-                  <option>Strategy</option>
-                  <option>Strategy</option>
-                  <option>Strategy</option>
-                  <option>Strategy</option>
+                <Select
+                  size={"lg"}
+                  placeholder="Select the Department"
+                  name="department"
+                  onChange={onChange}
+                >
+                  <option value={"Strategy"}>Strategy</option>
+                  <option value={"Finance"}>Finance</option>
+                  <option value={"HR"}>HR</option>
+                  <option value={"Maintenance"}>Maintenance</option>
+                  <option value={"Quality"}>Quality</option>
+                  <option value={"Stores"}>Stores</option>
                 </Select>
               </Box>
               <Box>
                 <FormLabel>Start Date</FormLabel>
-                <Input type="date" size={"lg"} />
+                <Input
+                  name="startDate"
+                  type="date"
+                  size={"lg"}
+                  onChange={onChange}
+                />
               </Box>
               <Box>
                 <FormLabel>End Date</FormLabel>
-                <Input type="date" size={"lg"} />
+                <Input
+                  name="endDate"
+                  type="date"
+                  size={"lg"}
+                  onChange={onChange}
+                />
               </Box>
               <Box>
                 <FormLabel>Location</FormLabel>
-                <Select size={"lg"}>
-                  <option>For Business</option>
-                  <option>For Personal</option>
+                <Select
+                  name="location"
+                  placeholder="Select the Location"
+                  size={"lg"}
+                  onChange={onChange}
+                >
+                  <option value={"Delhi"}>Delhi</option>
+                  <option value={"Pune"}>Pune</option>
+                  <option value={"Mumbai"}>Mumbai</option>
                 </Select>
               </Box>
             </Grid>
-            <Flex pr={"100px"} justify={"flex-end"}>
-              <Text>Status: <strong>Registered</strong></Text>
+            <Flex pr={"100px"} w={"90%"} justify={"flex-end"}>
+              <Text>
+                Status: <strong>Registered</strong>
+              </Text>
             </Flex>
           </Stack>
         </Stack>
