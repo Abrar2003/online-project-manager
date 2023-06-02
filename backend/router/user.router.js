@@ -8,15 +8,14 @@ app.use(express.json());
 
 app.post("/login", async (req, res) => {
   const { email, password } = req.body;
-  console.log(req.body)
   try {
     const user = await User.findOne({ email, password });
     console.log("user", user);
     if (user) {
       res.send({
-          success: true,
-          message: "Valid User"
-      })
+        success: true,
+        message: "Valid User",
+      });
     } else {
       res.send({
         success: false,
@@ -27,6 +26,5 @@ app.post("/login", async (req, res) => {
     console.log(err);
   }
 });
-
 
 module.exports = app;

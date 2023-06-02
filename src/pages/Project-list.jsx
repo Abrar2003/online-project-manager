@@ -4,7 +4,7 @@ import Navbar from '../components/Navbar'
 
 function Projectlist() {
   return (
-    <Box pl={"50px"}>
+    <Box pl={"60px"}>
         <Navbar />
         Project list
     </Box>

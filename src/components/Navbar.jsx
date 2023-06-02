@@ -4,17 +4,21 @@ import { useLocation, useSearchParams } from "react-router-dom";
 
 function Navbar() {
   const location = useLocation();
-  console.log(location);
+  const shadow = {
+    boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
+  };
   return (
     <Flex
       w={"60px"}
+      style={shadow}
       p={"0px 5px"}
       h={"100vh"}
       pos={"fixed"}
       left={"0px"}
       direction={"column"}
-      align={"flex-end"}
+      align={"center"}
       justify={"space-evenly"}
+      bg={"white"}
     >
       <Stack gap={"30px"}>
         {location.pathname == "/dashboard" ? (

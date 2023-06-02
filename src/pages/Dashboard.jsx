@@ -4,7 +4,7 @@ import Navbar from '../components/Navbar'
 
 function Dashboard() {
   return (
-    <Box pl={"50px"}>
+    <Box pl={"60px"}>
         <Navbar />
         Dashboard
     </Box>
