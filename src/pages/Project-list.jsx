@@ -7,14 +7,17 @@ import {
   Text,
   InputLeftElement,
   InputGroup,
+  useDisclosure,
 } from "@chakra-ui/react";
 import { MdArrowBackIosNew, MdLogout } from "react-icons/md";
+import { BsFilterLeft } from "react-icons/bs";
 import React, { createContext, useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import { useNavigate } from "react-router-dom";
 import { Search2Icon } from "@chakra-ui/icons";
 import ProjectTable from "../components/ProjectTable";
 import axios from "axios";
+import FilterDrawer from "../components/FilterDrawer";
 
 async function getData() {
   let res = await axios("http://localhost:8080/project/");
@@ -27,6 +30,7 @@ function Projectlist() {
   const [list, setList] = useState([]);
   const [status, setStatus] = useState("");
   const navigate = useNavigate();
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const logout = () => {
     localStorage.removeItem("login");
     navigate("/");
@@ -42,9 +46,9 @@ function Projectlist() {
       console.log(err);
     }
   };
-  const sort = (e) => {
+  const sort = (value) => {
     axios
-      .get(`http://localhost:8080/project/sort/${e.target.value}`)
+      .get(`http://localhost:8080/project/sort/${value}`)
       .then((res) => setList(res.data));
   };
   const search = (e) => {
@@ -67,8 +71,13 @@ function Projectlist() {
   }, [status]);
   return (
     <listContext.Provider value={updateStatus}>
-      <Navbar />
-      <Box bgColor="#eef2f5" boxSizing="border-box" h={"auto"} pt={"200px"}>
+      <Navbar />7
+      <Box
+        bgColor="#eef2f5"
+        boxSizing="border-box"
+        h={"auto"}
+        pt={["30px", "30px", "200px", "200px"]}
+      >
         <Box pl={["0px", "0px", "60px", "60px"]} w={"100%"}>
           <Box w="100%">
             <Image
@@ -123,14 +132,14 @@ function Projectlist() {
           <Box
             w={"98%"}
             m={"auto"}
-            h={"1500px"}
+            h={"auto"}
             boxSizing="boreder-box"
-            bg={"white"}
+            bg={["none","white","white"]}
             p={"1.5rem"}
             rounded={"25px"}
           >
-            <Flex>
-              <InputGroup>
+            <Flex align={"center"} justify={"center"}>
+              <InputGroup size={"lg"}>
                 <InputLeftElement pointerEvents="none">
                   <Search2Icon color="gray.500" />
                 </InputLeftElement>
@@ -138,12 +147,18 @@ function Projectlist() {
                   border={"none"}
                   onChange={search}
                   borderBottom={"2px solid lightgray"}
-                  w={"20%"}
+                  w={["90%", "90%", "20%", "20%"]}
                   type="text"
                   placeholder="Search"
                 />
               </InputGroup>
-              <Flex justify={"center"} align={"center"} gap={"10px"} w={"20%"}>
+              <Flex
+                justify={"center"}
+                align={"center"}
+                display={["none", "none", "flex", "flex"]}
+                gap={"10px"}
+                w={"20%"}
+              >
                 <Text color={"gray.500"}>Sort by:</Text>
                 <Select
                   border={"none"}
@@ -151,7 +166,7 @@ function Projectlist() {
                   type="text"
                   placeholder="Sort"
                   w={"70%"}
-                  onChange={sort}
+                  onChange={(e) => sort(e.target.value)}
                 >
                   <option value="priority">Priority</option>
                   <option value="updatedAt">Recently Modified</option>
@@ -160,6 +175,14 @@ function Projectlist() {
                   <option value="endDate">End Date</option>
                 </Select>
               </Flex>
+              <Box
+                fontSize={"3xl"}
+                display={["inline", "inline", "none", "none"]}
+                onClick={onOpen}
+              >
+                <BsFilterLeft />
+              </Box>
+              <FilterDrawer sort={sort} isOpen={isOpen} onClose={onClose} onOpen={onOpen} />
             </Flex>
             <ProjectTable data={list} />
           </Box>

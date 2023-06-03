@@ -18,6 +18,7 @@ function ProjectListNode({
 }) {
     const updateStatus = useContext(listContext); 
   return (
+    <>
     <Tr>
       <Td>
         <Text fontWeight={"bold"}>{title}</Text>
@@ -63,6 +64,7 @@ function ProjectListNode({
         </Flex>
       </Td>
     </Tr>
+    </>
   );
 }
 

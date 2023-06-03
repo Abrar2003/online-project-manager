@@ -8,8 +8,20 @@ app.use(express.json());
 
 app.get("/", async (req, res) => {
   try {
-    const projects = await Project.find();
-    res.status(200).send(projects);
+    const { page } = req.query;
+    const pageNumber = parseInt(page) || 1;
+
+    const limit = 8;
+    const skip = (pageNumber - 1) * limit;
+
+    const projects = await Project.find().skip(skip).limit(limit);
+
+    res.status(200).send({
+      page: pageNumber,
+      perPage: limit,
+      total: projects.length,
+      data: projects,
+    });
   } catch (err) {
     res.status(500).send(err);
   }
