@@ -43,6 +43,7 @@ function Login() {
       axios.post("http://localhost:8080/user/login", form).then((res) => {
       console.log(res.data, form);
       if (res.data.success) {
+        localStorage.setItem("login", true);
         navigate("/dashboard");
       } else {
         setValid(false);

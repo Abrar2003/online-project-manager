@@ -10,7 +10,6 @@ app.post("/login", async (req, res) => {
   const { email, password } = req.body;
   try {
     const user = await User.findOne({ email, password });
-    console.log("user", user);
     if (user) {
       res.send({
         success: true,
