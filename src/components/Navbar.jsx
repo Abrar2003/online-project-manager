@@ -1,17 +1,16 @@
-import { Box, Divider, Flex, Image, Stack } from "@chakra-ui/react";
+import { Divider, Flex, Image, Stack } from "@chakra-ui/react";
 import React from "react";
 import {
   Link,
   useLocation,
   useNavigate,
-  useSearchParams,
 } from "react-router-dom";
 
 function Navbar() {
   const location = useLocation();
   const navigate = useNavigate();
   const shadow = {
-    boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px;",
+    boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
   };
   const handleClick = () => {
     localStorage.removeItem("login");
@@ -31,10 +30,11 @@ function Navbar() {
         justify={"space-evenly"}
         bg={"white"}
         display={["none", "none", "none", "flex", "flex"]}
+        zIndex={"100"}
       >
         <Stack gap={"30px"}>
           <Link to={"/dashboard"}>
-            {location.pathname == "/dashboard" ? (
+            {location.pathname === "/dashboard" ? (
               <Image
                 w={["26px", "26px", "34px", "34px"]}
                 src={require("../Assets/Dashboard-active.svg").default}
@@ -47,7 +47,7 @@ function Navbar() {
             )}
           </Link>
           <Link to={"/project-list"}>
-            {location.pathname == "/project-list" ? (
+            {location.pathname === "/project-list" ? (
               <Image
                 w={["26px", "26px", "34px", "34px"]}
                 src={require("../Assets/Project-list-active.svg").default}
@@ -61,7 +61,7 @@ function Navbar() {
           </Link>
           <Divider color={"#96a1a9"} />
           <Link to={"/project"}>
-            {location.pathname == "/project" ? (
+            {location.pathname === "/project" ? (
               <Image
                 w={["26px", "26px", "34px", "34px"]}
                 src={require("../Assets/create-project-active.svg").default}
@@ -96,7 +96,7 @@ function Navbar() {
         display={["flex", "flex", "none", "none"]}
       >
         <Link to={"/dashboard"}>
-          {location.pathname == "/dashboard" ? (
+          {location.pathname === "/dashboard" ? (
             <Image
               w={["26px", "26px", "34px", "34px"]}
               src={require("../Assets/Dashboard-active.svg").default}
@@ -109,7 +109,7 @@ function Navbar() {
           )}
         </Link>
         <Link to={"/project"}>
-          {location.pathname == "/project" ? (
+          {location.pathname === "/project" ? (
             <Image
               w={["26px", "26px", "34px", "34px"]}
               src={require("../Assets/create-project-active.svg").default}
@@ -122,7 +122,7 @@ function Navbar() {
           )}
         </Link>
         <Link to={"/project-list"}>
-          {location.pathname == "/project-list" ? (
+          {location.pathname === "/project-list" ? (
             <Image
               w={["26px", "26px", "34px", "34px"]}
               src={require("../Assets/Project-list-active.svg").default}

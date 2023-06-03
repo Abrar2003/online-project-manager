@@ -12,7 +12,7 @@ const projectSchema = new mongoose.Schema({
     department: {required: true, type: String},
     location: {required: true, type: String},
     status: {required: true, default:"registered", type: String},
-    updateAt: {required: true, type: String, default: Date.now()}
+    updatedAt: {required: true, type: Date, default: Date.now()}
 });
 
 const Project = mongoose.model("projects", projectSchema);

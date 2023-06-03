@@ -29,6 +29,7 @@ app.get("/sort/:sortBy", async (req, res) => {
       return res.status(400).send({ error: "Invalid sort field" });
     }
     const sortOption = { [sortBy]: 1 };
+    
     const projects = await Project.find().sort(sortOption);
     res.status(200).send(projects);
   } catch (err) {
