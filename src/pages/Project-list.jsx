@@ -21,7 +21,7 @@ import FilterDrawer from "../components/FilterDrawer";
 import Pagination from "../components/Pagination";
 
 async function getData(q) {
-  let res = await axios("http://localhost:8080/project/?page="+q);
+  let res = await axios("http://localhost:8080/project/?page=" + q);
   return res.data;
 }
 
@@ -67,21 +67,21 @@ function Projectlist() {
       }, 300);
     }
   };
-  const changePage = (type,num) => {
-    if(type === "l2" && currentPage <= 2){
+  const changePage = (type, num) => {
+    if (type === "l2" && currentPage <= 2) {
       return;
     }
-    if(type  === "l1" && currentPage === 1){
+    if (type === "l1" && currentPage === 1) {
       return;
     }
-    if(type === "r1" && currentPage === total){
+    if (type === "r1" && currentPage === total) {
       return;
     }
-    if(type === "r2" && currentPage+1 >= total){
+    if (type === "r2" && currentPage + 1 >= total) {
       return;
     }
     setPage(currentPage + num);
-  }
+  };
   useEffect(() => {
     getData(currentPage).then((res) => {
       setList(res.data);
@@ -92,7 +92,7 @@ function Projectlist() {
     <listContext.Provider value={updateStatus}>
       <Navbar />
       <Box
-      mb={"70px"}
+        mb={"70px"}
         bgColor="#eef2f5"
         boxSizing="border-box"
         h={"auto"}
@@ -210,7 +210,11 @@ function Projectlist() {
               />
             </Flex>
             <ProjectTable data={list} />
-            <Pagination current={currentPage} total={total} changePage={changePage} />
+            <Pagination
+              current={currentPage}
+              total={total}
+              changePage={changePage}
+            />
           </Box>
         </Box>
       </Box>

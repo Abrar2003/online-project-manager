@@ -47,7 +47,7 @@ app.get("/sort/:sortBy", async (req, res) => {
       return res.status(400).send({ error: "Invalid sort field" });
     }
     const sortOption = { [sortBy]: 1 };
-    
+
     const projects = await Project.find().sort(sortOption);
     res.status(200).send(projects);
   } catch (err) {
@@ -104,6 +104,35 @@ app.put("/update-status/:id", async (req, res) => {
     res.status(200).send({
       success: true,
       message: "project updated successfully",
+    });
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+
+app.get("/project-stats", async (req, res) => {
+  try {
+    const totalProjects = await Project.countDocuments();
+
+    const runningProjects = await Project.countDocuments({ status: "running" });
+
+    const closedProjects = await Project.countDocuments({ status: "closed" });
+
+    const canceledProjects = await Project.countDocuments({
+      status: "canceled",
+    });
+
+    const delayedProjects = await Project.countDocuments({
+      status: "running",
+      endDate: { $lt: new Date() },
+    });
+
+    res.status(200).send({
+      totalProjects,
+      runningProjects,
+      closedProjects,
+      canceledProjects,
+      delayedProjects,
     });
   } catch (err) {
     res.status(500).send(err);

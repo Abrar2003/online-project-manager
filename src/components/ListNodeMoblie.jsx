@@ -91,7 +91,7 @@ function ListNodeMoblie({
                 Close
               </Button>
               <Button
-                onClick={() => updateStatus(_id, "cancled")}
+                onClick={() => updateStatus(_id, "canceled")}
                 rounded={"20px"}
                 colorScheme="blue"
                 variant={"outline"}
