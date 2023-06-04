@@ -10,7 +10,6 @@ import {
   Stack,
   Text,
   Textarea,
-  Icon,
   FormControl,
   FormErrorMessage,
 } from "@chakra-ui/react";
@@ -38,7 +37,7 @@ function Project() {
   const isError = form.title === "";
   const onChange = (e) => {
     const { name: key, value, type, valueAsNumber } = e.target;
-    const val = type == "date" ? valueAsNumber : value;
+    const val = type === "date" ? valueAsNumber : value;
     setForm({
       ...form,
       [key]: val,
@@ -51,8 +50,9 @@ function Project() {
     }
   }, []);
   const onSubmit = async () => {
+    console.log(form);
     for (let key in form) {
-      if (form[key] == "") {
+      if (form[key] === "") {
         alert("please fill all the fields");
         return;
       }
@@ -133,7 +133,156 @@ function Project() {
             </Box>
           </Flex>
         </Box>
-
+        <Stack
+            gap={"60px"}
+            w={"90%"}
+            m={"auto"}
+            bg={"white"}
+            rounded={"20px"}
+            h={"700px"}
+            pos={"absolute"}
+            top={"150px"}
+            right={"50px"}
+            boxSizing="border-box"
+            p={"2rem"}
+            zIndex={"1000"}
+            display={["none", "none", "flex", "flex"]}
+          >
+            <Flex justify={"space-between"}>
+              <Box w="50%">
+                <Textarea name="title" onChange={onChange} placeholder="Enter Project Theme" />
+              </Box>
+              <Button
+                onClick={onSubmit}
+                bg={"#035fb2"}
+                color={"white"}
+                width={"10%"}
+                rounded={"25px"}
+                fontWeight={"400"}
+              >
+                Save Project
+              </Button>
+            </Flex>
+            <Grid gap={"30px"} templateColumns={"repeat(3, 1fr)"}>
+              <Box>
+                <FormLabel>Reason</FormLabel>
+                <Select
+                size={"lg"}
+                placeholder="Select the Reason"
+                name="reason"
+                onChange={onChange}
+              >
+                <option value={"Business"}>For Business</option>
+                <option value={"Transport"}>For Transport</option>
+                <option value={"Dealership"}>For Dealership</option>
+              </Select>
+              </Box>
+              <Box>
+                <FormLabel>Type</FormLabel>
+                <Select
+                size={"lg"}
+                placeholder="Select the Type"
+                name="type"
+                onChange={onChange}
+              >
+                <option value={"Internal"}>Internal</option>
+                <option value={"External"}>External</option>
+                <option value={"Vendor"}>Vendor</option>
+              </Select>
+              </Box>
+              <Box>
+                <FormLabel>Division</FormLabel>
+                <Select
+                size={"lg"}
+                placeholder="Select the Division"
+                name="division"
+                onChange={onChange}
+              >
+                <option value={"Filter"}>Filter</option>
+                <option value={"Compressor"}>Compressor</option>
+                <option value={"Pump"}>Pumps</option>
+                <option value={"Glass"}>Glass</option>
+              </Select>
+              </Box>
+              <Box>
+                <FormLabel>Category</FormLabel>
+                <Select
+                size={"lg"}
+                placeholder="Select the Category"
+                name="category"
+                onChange={onChange}
+              >
+                <option value={"A"}>Quality A</option>
+                <option value={"B"}>Quality B</option>
+                <option value={"C"}>Quality C</option>
+                <option value={"D"}>Quality D</option>
+              </Select>
+              </Box>
+              <Box>
+                <FormLabel>Priority</FormLabel>
+                <Select
+                size={"lg"}
+                placeholder="Select the Priority"
+                name="priority"
+                onChange={onChange}
+              >
+                <option value={"High"}>High</option>
+                <option value={"Medium"}>Medium</option>
+                <option value={"Low"}>Low</option>
+              </Select>
+              </Box>
+              <Box>
+                <FormLabel>Department</FormLabel>
+                <Select
+                size={"lg"}
+                placeholder="Select the Department"
+                name="department"
+                onChange={onChange}
+              >
+                <option value={"Strategy"}>Strategy</option>
+                <option value={"Finance"}>Finance</option>
+                <option value={"HR"}>HR</option>
+                <option value={"Maintenance"}>Maintenance</option>
+                <option value={"Quality"}>Quality</option>
+                <option value={"Stores"}>Stores</option>
+              </Select>
+              </Box>
+              <Box>
+                <FormLabel>Start Date</FormLabel>
+                <Input
+                name="startDate"
+                type="date"
+                size={"lg"}
+                onChange={onChange}
+              />
+              </Box>
+              <Box>
+                <FormLabel>End Date</FormLabel>
+                <Input
+                name="endDate"
+                type="date"
+                size={"lg"}
+                onChange={onChange}
+              />
+              </Box>
+              <Box>
+                <FormLabel>Location</FormLabel>
+                <Select
+                name="location"
+                placeholder="Select the Location"
+                size={"lg"}
+                onChange={onChange}
+              >
+                <option value={"Delhi"}>Delhi</option>
+                <option value={"Pune"}>Pune</option>
+                <option value={"Mumbai"}>Mumbai</option>
+              </Select>
+              </Box>
+            </Grid>
+            <Flex pr={"100px"} justify={"flex-end"}>
+              <Text>Status: <strong>Registered</strong></Text>
+            </Flex>
+          </Stack>
         <Stack
           p={"70px 0"}
           justifyContent={"center"}
@@ -145,6 +294,7 @@ function Project() {
           boxSizing="border-box"
           display={["flex", "flex", "none", "none"]}
         >
+          
           <Stack
             gap={"40px"}
             w={"90%"}

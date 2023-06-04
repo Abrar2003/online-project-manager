@@ -14,12 +14,18 @@ app.get("/", async (req, res) => {
     const limit = 8;
     const skip = (pageNumber - 1) * limit;
 
+    const totalCount = await Project.countDocuments();
+
+    // Retrieve the projects with pagination
     const projects = await Project.find().skip(skip).limit(limit);
 
-    res.status(200).send({
+    const totalPages = Math.ceil(totalCount / limit);
+
+    res.status(200).json({
       page: pageNumber,
       perPage: limit,
-      total: projects.length,
+      total: totalCount,
+      totalPages: totalPages,
       data: projects,
     });
   } catch (err) {
@@ -58,7 +64,7 @@ app.get("/search/:query", async (req, res) => {
         { location: { $regex: keywords, $options: "i" } },
         { category: { $regex: keywords, $options: "i" } },
         { status: { $regex: keywords, $options: "i" } },
-        { departmen: { $regex: keywords, $options: "i" } },
+        { department: { $regex: keywords, $options: "i" } },
         { divison: { $regex: keywords, $options: "i" } },
         { type: { $regex: keywords, $options: "i" } },
         { priority: { $regex: keywords, $options: "i" } },

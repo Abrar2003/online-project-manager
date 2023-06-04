@@ -37,7 +37,7 @@ function ProjectTable({ data }) {
           </Tbody>
         </Table>
       </TableContainer>
-      <Stack mt={"20px"} w={"100%"} mb={"50px"}>
+      <Stack display={["flex", "flex", "none", "none"]} mt={"20px"} w={"100%"} mb={"50px"}>
         {
           data.map(el => <ListNodeMoblie key={el._id} {...el} />)
         }

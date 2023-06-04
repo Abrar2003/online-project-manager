@@ -18,9 +18,10 @@ import { Search2Icon } from "@chakra-ui/icons";
 import ProjectTable from "../components/ProjectTable";
 import axios from "axios";
 import FilterDrawer from "../components/FilterDrawer";
+import Pagination from "../components/Pagination";
 
-async function getData() {
-  let res = await axios("http://localhost:8080/project/");
+async function getData(q) {
+  let res = await axios("http://localhost:8080/project/?page="+q);
   return res.data;
 }
 
@@ -29,6 +30,8 @@ export const listContext = createContext();
 function Projectlist() {
   const [list, setList] = useState([]);
   const [status, setStatus] = useState("");
+  const [currentPage, setPage] = useState(1);
+  const [total, setTotal] = useState(0);
   const navigate = useNavigate();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const logout = () => {
@@ -64,15 +67,32 @@ function Projectlist() {
       }, 300);
     }
   };
+  const changePage = (type,num) => {
+    if(type === "l2" && currentPage <= 2){
+      return;
+    }
+    if(type  === "l1" && currentPage === 1){
+      return;
+    }
+    if(type === "r1" && currentPage === total){
+      return;
+    }
+    if(type === "r2" && currentPage+1 >= total){
+      return;
+    }
+    setPage(currentPage + num);
+  }
   useEffect(() => {
-    getData().then((res) => {
-      setList(res);
+    getData(currentPage).then((res) => {
+      setList(res.data);
+      setTotal(res.totalPages);
     });
-  }, [status]);
+  }, [status, currentPage]);
   return (
     <listContext.Provider value={updateStatus}>
-      <Navbar />7
+      <Navbar />
       <Box
+      mb={"70px"}
         bgColor="#eef2f5"
         boxSizing="border-box"
         h={"auto"}
@@ -134,7 +154,7 @@ function Projectlist() {
             m={"auto"}
             h={"auto"}
             boxSizing="boreder-box"
-            bg={["none","white","white"]}
+            bg={["none", "white", "white"]}
             p={"1.5rem"}
             rounded={"25px"}
           >
@@ -182,9 +202,15 @@ function Projectlist() {
               >
                 <BsFilterLeft />
               </Box>
-              <FilterDrawer sort={sort} isOpen={isOpen} onClose={onClose} onOpen={onOpen} />
+              <FilterDrawer
+                sort={sort}
+                isOpen={isOpen}
+                onClose={onClose}
+                onOpen={onOpen}
+              />
             </Flex>
             <ProjectTable data={list} />
+            <Pagination current={currentPage} total={total} changePage={changePage} />
           </Box>
         </Box>
       </Box>
