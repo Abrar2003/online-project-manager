@@ -53,7 +53,7 @@ function ProjectListNode({
             Close
           </Button>
           <Button
-          onClick={() => updateStatus(_id, "canceled")}
+          onClick={() => updateStatus(_id, "cancelled")}
             rounded={"20px"}
             colorScheme="blue"
             variant={"outline"}

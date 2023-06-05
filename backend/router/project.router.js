@@ -118,8 +118,8 @@ app.get("/project-stats", async (req, res) => {
 
     const closedProjects = await Project.countDocuments({ status: "closed" });
 
-    const canceledProjects = await Project.countDocuments({
-      status: "canceled",
+    const cancelledProjects = await Project.countDocuments({
+      status: "cancelled",
     });
 
     const delayedProjects = await Project.countDocuments({
@@ -131,9 +131,57 @@ app.get("/project-stats", async (req, res) => {
       totalProjects,
       runningProjects,
       closedProjects,
-      canceledProjects,
+      cancelledProjects,
       delayedProjects,
     });
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+
+app.get("/department-stats", async (req, res) => {
+  try {
+    // Retrieve the statistics of all departments
+    const departmentStats = await Project.aggregate([
+      {
+        $group: {
+          _id: "$department",
+          totalProjects: { $sum: 1 },
+          closedProjects: {
+            $sum: {
+              $cond: [{ $eq: ["$status", "closed"] }, 1, 0],
+            },
+          },
+        },
+      },
+      {
+        $project: {
+          _id: 0,
+          department: "$_id",
+          totalProjects: 1,
+          closedProjects: 1,
+          completionPercentage: {
+            $cond: [
+              { $eq: ["$totalProjects", 0] },
+              0,
+              {
+                $round: [
+                  {
+                    $multiply: [
+                      { $divide: ["$closedProjects", "$totalProjects"] },
+                      100,
+                    ],
+                  },
+                  0,
+                ],
+              },
+            ],
+          },
+        },
+      },
+    ]);
+
+    res.status(200).json(departmentStats);
   } catch (err) {
     res.status(500).send(err);
   }
