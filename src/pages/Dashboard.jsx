@@ -29,7 +29,7 @@ function Dashboard() {
     getStats().then((res) => setStats(res));
     getDepartmentStats().then((res) =>
       setDepartmentData({
-        labels: res.map((data) => [data.department, data.completionPercentage]),
+        labels: res.map((data) => [`${data.completionPercentage}%`, data.department]),
         datasets: [
           {
             label: "Running",
@@ -124,8 +124,8 @@ function Dashboard() {
             p={"1rem"}
             bg={"white"}
             h={"100px"}
-            borderLeft={"5px solid blue"}
-            rounded={"10px"}
+            borderLeft={"5px solid #0cc9e8"}
+            rounded={"8px"}
             minW={["40%", "40%", "19%", "19%"]}
             
           >
@@ -138,8 +138,8 @@ function Dashboard() {
             p={"1rem"}
             bg={"white"}
             h={"100px"}
-            borderLeft={"5px solid blue"}
-            rounded={"10px"}
+            borderLeft={"5px solid #0cc9e8"}
+            rounded={"8px"}
             minW={["40%", "40%", "15%", "19%"]}
           >
             <Text fontSize={["l", "l", "xl", "xl"]}>Closed</Text>
@@ -151,8 +151,8 @@ function Dashboard() {
             p={"1rem"}
             bg={"white"}
             h={"100px"}
-            borderLeft={"5px solid blue"}
-            rounded={"10px"}
+            borderLeft={"5px solid #0cc9e8"}
+            rounded={"8px"}
             minW={["40%", "40%", "15%", "19%"]}
           >
             <Text fontSize={["l", "l", "xl", "xl"]}>Running</Text>
@@ -164,8 +164,8 @@ function Dashboard() {
             p={"1rem"}
             bg={"white"}
             h={"100px"}
-            borderLeft={"5px solid blue"}
-            rounded={"10px"}
+            borderLeft={"5px solid #0cc9e8"}
+            rounded={"8px"}
             minW={["40%", "40%", "15%", "19%"]}
           >
             <Text fontSize={["l", "l", "xl", "xl"]}>Clouser Delay</Text>
@@ -177,23 +177,36 @@ function Dashboard() {
             p={"1rem"}
             bg={"white"}
             h={"100px"}
-            borderLeft={"5px solid blue"}
-            rounded={"10px"}
+            borderLeft={"5px solid #0cc9e8"}
+            rounded={"8px"}
             minW={["40%", "40%", "15%", "19%"]}
           >
             <Text fontSize={["l", "l", "xl", "xl"]}>Cancelled</Text>
             <Heading>{stats.cancelledProjects}</Heading>
           </Stack>
         </Flex>
+        <Text ml={"50px"} fontSize={"25px"}>Department wise - Total Vs Closed</Text>
         <Box
-          m={["20px", "20px", "50px", "50px"]}
+          ml={["20px", "20px", "50px", "50px"]}
+          mt={"20px"}
           rounded={"15px"}
           p={["1rem", "1rem", "2rem", "2rem"]}
+          pb={"0px"}
           h={"450px"}
           bg={"white"}
           w={["90%", "90%", "50%", "50%"]}
         >
           {departmentData ? <BarChart chartData={departmentData} /> : null}
+          <Flex w={"100%"} gap={"30px"} m={"auto"} justify={"center"}>
+            <Flex gap={"10px"} justify={"center"} align={"center"}>
+              <Box bg={"#025aab"} h={"12px"} w={"12px"} rounded={"50%"}></Box>
+              <Text>Running</Text>
+            </Flex>
+            <Flex gap={"10px"} justify={"center"} align={"center"}>
+              <Box bg={"#5aa647"} h={"12px"} w={"12px"} rounded={"50%"}></Box>
+              <Text>Closed</Text>
+            </Flex>
+          </Flex>
         </Box>
       </Box>
     </>

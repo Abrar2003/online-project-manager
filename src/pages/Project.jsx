@@ -43,12 +43,6 @@ function Project() {
       [key]: val,
     });
   };
-  useEffect(() => {
-    const login = localStorage.getItem("login");
-    if (!login) {
-      navigate("/");
-    }
-  }, []);
   const onSubmit = async () => {
     console.log(form);
     for (let key in form) {
@@ -239,12 +233,12 @@ function Project() {
                 name="department"
                 onChange={onChange}
               >
-                <option value={"Strategy"}>Strategy</option>
-                <option value={"Finance"}>Finance</option>
+                <option value={"STR"}>Strategy</option>
+                <option value={"FIN"}>Finance</option>
                 <option value={"HR"}>HR</option>
-                <option value={"Maintenance"}>Maintenance</option>
-                <option value={"Quality"}>Quality</option>
-                <option value={"Stores"}>Stores</option>
+                <option value={"MAN"}>Maintenance</option>
+                <option value={"QLT"}>Quality</option>
+                <option value={"STO"}>Stores</option>
               </Select>
               </Box>
               <Box>

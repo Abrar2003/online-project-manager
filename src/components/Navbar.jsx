@@ -36,12 +36,12 @@ function Navbar() {
           <Link to={"/dashboard"}>
             {location.pathname === "/dashboard" ? (
               <Image
-                w={["26px", "26px", "34px", "34px"]}
+                w={["26px", "26px", "34px", "30px"]}
                 src={require("../Assets/Dashboard-active.svg").default}
               />
             ) : (
               <Image
-                w={["26px", "26px", "34px", "34px"]}
+                w={["26px", "26px", "34px", "30px"]}
                 src={require("../Assets/Dashboard.svg").default}
               />
             )}
@@ -49,12 +49,12 @@ function Navbar() {
           <Link to={"/project-list"}>
             {location.pathname === "/project-list" ? (
               <Image
-                w={["26px", "26px", "34px", "34px"]}
+                w={["26px", "26px", "34px", "30px"]}
                 src={require("../Assets/Project-list-active.svg").default}
               />
             ) : (
               <Image
-                w={["26px", "26px", "34px", "34px"]}
+                w={["26px", "26px", "34px", "30px"]}
                 src={require("../Assets/Project-list.svg").default}
               />
             )}
@@ -63,12 +63,12 @@ function Navbar() {
           <Link to={"/project"}>
             {location.pathname === "/project" ? (
               <Image
-                w={["26px", "26px", "34px", "34px"]}
+                w={["26px", "26px", "34px", "30px"]}
                 src={require("../Assets/create-project-active.svg").default}
               />
             ) : (
               <Image
-                w={["26px", "26px", "34px", "34px"]}
+                w={["26px", "26px", "34px", "30px"]}
                 src={require("../Assets/create-project.svg").default}
               />
             )}
@@ -76,20 +76,20 @@ function Navbar() {
         </Stack>
         <Image
           onClick={handleClick}
-          w={["26px", "26px", "34px", "34px"]}
+          w={["26px", "26px", "34px", "30px"]}
           src={require("../Assets/Logout.svg").default}
         />
       </Flex>
       <Flex
         w={"100%"}
         style={shadow}
-        p={"0px 5px"}
-        h={"60px"}
+        p={"0px 50px"}
+        h={"70px"}
         pos={"fixed"}
         bottom={"0px"}
         direction={"flex"}
         align={"center"}
-        justify={"space-evenly"}
+        justify={"space-between"}
         bg={"white"}
         roundedTop={"30px"}
         zIndex={"100"}
@@ -98,12 +98,12 @@ function Navbar() {
         <Link to={"/dashboard"}>
           {location.pathname === "/dashboard" ? (
             <Image
-              w={["26px", "26px", "34px", "34px"]}
+              w={["26px", "26px", "34px", "30px"]}
               src={require("../Assets/Dashboard-active.svg").default}
             />
           ) : (
             <Image
-              w={["26px", "26px", "34px", "34px"]}
+              w={["26px", "26px", "34px", "30px"]}
               src={require("../Assets/Dashboard.svg").default}
             />
           )}
@@ -111,12 +111,12 @@ function Navbar() {
         <Link to={"/project"}>
           {location.pathname === "/project" ? (
             <Image
-              w={["26px", "26px", "34px", "34px"]}
+              w={["26px", "26px", "34px", "30px"]}
               src={require("../Assets/create-project-active.svg").default}
             />
           ) : (
             <Image
-              w={["26px", "26px", "34px", "34px"]}
+              w={["26px", "26px", "34px", "30px"]}
               src={require("../Assets/create-project.svg").default}
             />
           )}
@@ -124,12 +124,12 @@ function Navbar() {
         <Link to={"/project-list"}>
           {location.pathname === "/project-list" ? (
             <Image
-              w={["26px", "26px", "34px", "34px"]}
+              w={["26px", "26px", "34px", "30px"]}
               src={require("../Assets/Project-list-active.svg").default}
             />
           ) : (
             <Image
-              w={["26px", "26px", "34px", "34px"]}
+              w={["26px", "26px", "34px", "30px"]}
               src={require("../Assets/Project-list.svg").default}
             />
           )}

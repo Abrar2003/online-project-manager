@@ -83,6 +83,9 @@ function Projectlist() {
     setPage(currentPage + num);
   };
   useEffect(() => {
+    if(!localStorage.getItem("login")){
+      navigate("/");
+    }
     getData(currentPage).then((res) => {
       setList(res.data);
       setTotal(res.totalPages);

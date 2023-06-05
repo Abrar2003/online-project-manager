@@ -62,14 +62,14 @@ function Login() {
         width={["auto", "auto", "100%", "100%", "100%"]}
         objectFit={"cover"}
         roundedBottomLeft={"100px"}
-        src={require("../login-bg-1.svg").default}
+        src={require("../Assets/login-bg-1.svg").default}
         alt="login bg"
       />
       <Flex
         w={"100%"}
         gap={"20px"}
         pos={"absolute"}
-        top={["100px", "100px", "100px", "100px"]}
+        top={"100px"}
         justify={"center"}
         align={"center"}
         direction="column"
