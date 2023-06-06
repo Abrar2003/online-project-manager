@@ -21,7 +21,9 @@ import FilterDrawer from "../components/FilterDrawer";
 import Pagination from "../components/Pagination";
 
 async function getData(q) {
-  let res = await axios("http://localhost:8080/project/?page=" + q);
+  let res = await axios(
+    "https://pink-colorful-whale.cyclic.app/project/?page=" + q
+  );
   return res.data;
 }
 
@@ -41,9 +43,12 @@ function Projectlist() {
   const updateStatus = async (id, update) => {
     console.log(id, update);
     try {
-      await axios.put(`http://localhost:8080/project/update-status/${id}`, {
-        status: update,
-      });
+      await axios.put(
+        `https://pink-colorful-whale.cyclic.app/project/update-status/${id}`,
+        {
+          status: update,
+        }
+      );
       setStatus(update);
     } catch (err) {
       console.log(err);
@@ -51,7 +56,7 @@ function Projectlist() {
   };
   const sort = (value) => {
     axios
-      .get(`http://localhost:8080/project/sort/${value}`)
+      .get(`https://pink-colorful-whale.cyclic.app/project/sort/${value}`)
       .then((res) => setList(res.data));
   };
   const search = (e) => {
@@ -59,7 +64,9 @@ function Projectlist() {
       setTimeout(async () => {
         try {
           await axios
-            .get(`http://localhost:8080/project/search/${e.target.value}`)
+            .get(
+              `https://pink-colorful-whale.cyclic.app/project/search/${e.target.value}`
+            )
             .then((res) => setList(res.data));
         } catch (err) {
           console.log(err);
@@ -83,7 +90,7 @@ function Projectlist() {
     setPage(currentPage + num);
   };
   useEffect(() => {
-    if(!localStorage.getItem("login")){
+    if (!localStorage.getItem("login")) {
       navigate("/");
     }
     getData(currentPage).then((res) => {

@@ -57,7 +57,7 @@ function Project() {
     }
     try {
       let res = await axios.post(
-        "http://localhost:8080/project/new-project",
+        "https://pink-colorful-whale.cyclic.app/project/new-project",
         form
       );
       if (res.data.success) {
@@ -74,10 +74,14 @@ function Project() {
     navigate("/");
   };
   return (
-    <Box bgColor="#eef2f5" boxSizing="border-box" h={["auto","auto","100vh","100vh"]}>
+    <Box
+      bgColor="#eef2f5"
+      boxSizing="border-box"
+      h={["auto", "auto", "100vh", "100vh"]}
+    >
       <Navbar />
       <Box pl={["0px", "0px", "60px", "60px"]} w={"100%"}>
-        <Box  w="100%">
+        <Box w="100%">
           <Image
             w={"100%"}
             h={["60px", "60ox", "auto", "auto"]}
@@ -128,39 +132,43 @@ function Project() {
           </Flex>
         </Box>
         <Stack
-            gap={"60px"}
-            w={"90%"}
-            m={"auto"}
-            bg={"white"}
-            rounded={"20px"}
-            h={"700px"}
-            pos={"absolute"}
-            top={"150px"}
-            right={"50px"}
-            boxSizing="border-box"
-            p={"2rem"}
-            zIndex={"1000"}
-            display={["none", "none", "flex", "flex"]}
-          >
-            <Flex justify={"space-between"}>
-              <Box w="50%">
-                <Textarea name="title" onChange={onChange} placeholder="Enter Project Theme" />
-              </Box>
-              <Button
-                onClick={onSubmit}
-                bg={"#035fb2"}
-                color={"white"}
-                width={"10%"}
-                rounded={"25px"}
-                fontWeight={"400"}
-              >
-                Save Project
-              </Button>
-            </Flex>
-            <Grid gap={"30px"} templateColumns={"repeat(3, 1fr)"}>
-              <Box>
-                <FormLabel>Reason</FormLabel>
-                <Select
+          gap={"60px"}
+          w={"90%"}
+          m={"auto"}
+          bg={"white"}
+          rounded={"20px"}
+          h={"700px"}
+          pos={"absolute"}
+          top={"150px"}
+          right={"50px"}
+          boxSizing="border-box"
+          p={"2rem"}
+          zIndex={"1000"}
+          display={["none", "none", "flex", "flex"]}
+        >
+          <Flex justify={"space-between"}>
+            <Box w="50%">
+              <Textarea
+                name="title"
+                onChange={onChange}
+                placeholder="Enter Project Theme"
+              />
+            </Box>
+            <Button
+              onClick={onSubmit}
+              bg={"#035fb2"}
+              color={"white"}
+              width={"10%"}
+              rounded={"25px"}
+              fontWeight={"400"}
+            >
+              Save Project
+            </Button>
+          </Flex>
+          <Grid gap={"30px"} templateColumns={"repeat(3, 1fr)"}>
+            <Box>
+              <FormLabel>Reason</FormLabel>
+              <Select
                 size={"lg"}
                 placeholder="Select the Reason"
                 name="reason"
@@ -170,10 +178,10 @@ function Project() {
                 <option value={"Transport"}>For Transport</option>
                 <option value={"Dealership"}>For Dealership</option>
               </Select>
-              </Box>
-              <Box>
-                <FormLabel>Type</FormLabel>
-                <Select
+            </Box>
+            <Box>
+              <FormLabel>Type</FormLabel>
+              <Select
                 size={"lg"}
                 placeholder="Select the Type"
                 name="type"
@@ -183,10 +191,10 @@ function Project() {
                 <option value={"External"}>External</option>
                 <option value={"Vendor"}>Vendor</option>
               </Select>
-              </Box>
-              <Box>
-                <FormLabel>Division</FormLabel>
-                <Select
+            </Box>
+            <Box>
+              <FormLabel>Division</FormLabel>
+              <Select
                 size={"lg"}
                 placeholder="Select the Division"
                 name="division"
@@ -197,10 +205,10 @@ function Project() {
                 <option value={"Pump"}>Pumps</option>
                 <option value={"Glass"}>Glass</option>
               </Select>
-              </Box>
-              <Box>
-                <FormLabel>Category</FormLabel>
-                <Select
+            </Box>
+            <Box>
+              <FormLabel>Category</FormLabel>
+              <Select
                 size={"lg"}
                 placeholder="Select the Category"
                 name="category"
@@ -211,10 +219,10 @@ function Project() {
                 <option value={"C"}>Quality C</option>
                 <option value={"D"}>Quality D</option>
               </Select>
-              </Box>
-              <Box>
-                <FormLabel>Priority</FormLabel>
-                <Select
+            </Box>
+            <Box>
+              <FormLabel>Priority</FormLabel>
+              <Select
                 size={"lg"}
                 placeholder="Select the Priority"
                 name="priority"
@@ -224,44 +232,44 @@ function Project() {
                 <option value={"Medium"}>Medium</option>
                 <option value={"Low"}>Low</option>
               </Select>
-              </Box>
-              <Box>
-                <FormLabel>Department</FormLabel>
-                <Select
+            </Box>
+            <Box>
+              <FormLabel>Department</FormLabel>
+              <Select
                 size={"lg"}
                 placeholder="Select the Department"
                 name="department"
                 onChange={onChange}
               >
-                <option value={"STR"}>Strategy</option>
-                <option value={"FIN"}>Finance</option>
-                <option value={"HR"}>HR</option>
-                <option value={"MAN"}>Maintenance</option>
-                <option value={"QLT"}>Quality</option>
-                <option value={"STO"}>Stores</option>
+                <option value={"STR Strategy"}>Strategy</option>
+                <option value={"FIN Finance"}>Finance</option>
+                <option value={"HR HR"}>HR</option>
+                <option value={"MAN Maintenance"}>Maintenance</option>
+                <option value={"QLT Quality"}>Quality</option>
+                <option value={"STO Stores"}>Stores</option>
               </Select>
-              </Box>
-              <Box>
-                <FormLabel>Start Date</FormLabel>
-                <Input
+            </Box>
+            <Box>
+              <FormLabel>Start Date</FormLabel>
+              <Input
                 name="startDate"
                 type="date"
                 size={"lg"}
                 onChange={onChange}
               />
-              </Box>
-              <Box>
-                <FormLabel>End Date</FormLabel>
-                <Input
+            </Box>
+            <Box>
+              <FormLabel>End Date</FormLabel>
+              <Input
                 name="endDate"
                 type="date"
                 size={"lg"}
                 onChange={onChange}
               />
-              </Box>
-              <Box>
-                <FormLabel>Location</FormLabel>
-                <Select
+            </Box>
+            <Box>
+              <FormLabel>Location</FormLabel>
+              <Select
                 name="location"
                 placeholder="Select the Location"
                 size={"lg"}
@@ -271,12 +279,14 @@ function Project() {
                 <option value={"Pune"}>Pune</option>
                 <option value={"Mumbai"}>Mumbai</option>
               </Select>
-              </Box>
-            </Grid>
-            <Flex pr={"100px"} justify={"flex-end"}>
-              <Text>Status: <strong>Registered</strong></Text>
-            </Flex>
-          </Stack>
+            </Box>
+          </Grid>
+          <Flex pr={"100px"} justify={"flex-end"}>
+            <Text>
+              Status: <strong>Registered</strong>
+            </Text>
+          </Flex>
+        </Stack>
         <Stack
           p={"70px 0"}
           justifyContent={"center"}
@@ -284,11 +294,9 @@ function Project() {
           w={"100%"}
           m={"auto"}
           gap={"25px"}
-
           boxSizing="border-box"
           display={["flex", "flex", "none", "none"]}
         >
-          
           <Stack
             gap={"40px"}
             w={"90%"}
@@ -306,7 +314,7 @@ function Project() {
               />
               <FormErrorMessage>Project Theme required</FormErrorMessage>
             </FormControl>
-            
+
             <Box>
               <FormLabel>Reason</FormLabel>
               <Select

@@ -7,11 +7,15 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import BarChart from "../components/BarChart";
 async function getStats() {
-  let res = await axios.get("http://localhost:8080/project/project-stats");
+  let res = await axios.get(
+    "https://pink-colorful-whale.cyclic.app/project/project-stats"
+  );
   return res.data;
 }
 async function getDepartmentStats() {
-  let res = await axios.get("http://localhost:8080/project/department-stats");
+  let res = await axios.get(
+    "https://pink-colorful-whale.cyclic.app/project/department-stats"
+  );
   return res.data;
 }
 function Dashboard() {
@@ -29,7 +33,10 @@ function Dashboard() {
     getStats().then((res) => setStats(res));
     getDepartmentStats().then((res) =>
       setDepartmentData({
-        labels: res.map((data) => [`${data.completionPercentage}%`, data.department]),
+        labels: res.map((data) => [
+          `${data.completionPercentage}%`,
+          data.department.slice(0, 3),
+        ]),
         datasets: [
           {
             label: "Running",
@@ -114,9 +121,10 @@ function Dashboard() {
           color={"gray.600"}
           fontWeight={"600"}
           css={{
-              '&::-webkit-scrollbar': {
-                width: '0px',
-            }}}
+            "&::-webkit-scrollbar": {
+              width: "0px",
+            },
+          }}
         >
           <Stack
             style={shadow}
@@ -127,7 +135,6 @@ function Dashboard() {
             borderLeft={"5px solid #0cc9e8"}
             rounded={"8px"}
             minW={["40%", "40%", "19%", "19%"]}
-            
           >
             <Text fontSize={["l", "l", "xl", "xl"]}>Total Projects</Text>
             <Heading>{stats.totalProjects}</Heading>
@@ -185,7 +192,9 @@ function Dashboard() {
             <Heading>{stats.cancelledProjects}</Heading>
           </Stack>
         </Flex>
-        <Text ml={"50px"} fontSize={"25px"}>Department wise - Total Vs Closed</Text>
+        <Text ml={"50px"} fontSize={"25px"}>
+          Department wise - Total Vs Closed
+        </Text>
         <Box
           ml={["20px", "20px", "50px", "50px"]}
           mt={"20px"}

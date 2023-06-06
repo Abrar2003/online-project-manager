@@ -30,12 +30,7 @@ function ProjectListNode({
         <Td>Quality {category}</Td>
         <Td>{priority}</Td>
         <Td>
-          {department === "STR" ? "Strategy" : null}
-          {department === "FIN" ? "Finance" : null}
-          {department === "MAN" ? "Maintenance" : null}
-          {department === "QLT" ? "Quality" : null}
-          {department === "STO" ? "Store" : null}
-          {department === "HR" ? "HR" : null}
+          {department.slice(3)}
         </Td>
         <Td>{location}</Td>
         <Td>{status}</Td>

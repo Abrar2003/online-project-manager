@@ -29,31 +29,32 @@ function Login() {
   const [valid, setValid] = useState(true);
   const navigate = useNavigate();
   const onChange = (e) => {
-    const { name:key, value } = e.target;
+    const { name: key, value } = e.target;
     setform({
       ...form,
-      [key]: value
-    })
-  }
+      [key]: value,
+    });
+  };
   const shadow = {
     boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
   };
   const submit = () => {
-    setTimeout(()=>{
-      axios.post("http://localhost:8080/user/login", form).then((res) => {
-      console.log(res.data, form);
-      if (res.data.success) {
-        localStorage.setItem("login", true);
-        navigate("/dashboard");
-      } else {
-        setValid(false);
-      }
-    })
-    .catch(err => {
-      console.log(err);
-    })
+    setTimeout(() => {
+      axios
+        .post("https://pink-colorful-whale.cyclic.app/user/login", form)
+        .then((res) => {
+          console.log(res.data, form);
+          if (res.data.success) {
+            localStorage.setItem("login", true);
+            navigate("/dashboard");
+          } else {
+            setValid(false);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }, 100);
-    
   };
   return (
     <Box h={"100vh"}>
