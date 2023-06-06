@@ -56,12 +56,7 @@ function ListNodeMoblie({
           <Text>
             Dept.:{" "}
             <strong>
-              {department === "STR" ? "Strategy" : null}
-              {department === "FIN" ? "Finance" : null}
-              {department === "MAN" ? "Maintenance" : null}
-              {department === "QLT" ? "Quality" : null}
-              {department === "STO" ? "Store" : null}
-              {department === "HR" ? "HR" : null}
+            {department.slice(3)}
             </strong>
           </Text>
         </Flex>
