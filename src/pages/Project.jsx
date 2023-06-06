@@ -390,12 +390,12 @@ function Project() {
                 name="department"
                 onChange={onChange}
               >
-                <option value={"Strategy"}>Strategy</option>
-                <option value={"Finance"}>Finance</option>
-                <option value={"HR"}>HR</option>
-                <option value={"Maintenance"}>Maintenance</option>
-                <option value={"Quality"}>Quality</option>
-                <option value={"Stores"}>Stores</option>
+                <option value={"STR Strategy"}>Strategy</option>
+                <option value={"FIN Finance"}>Finance</option>
+                <option value={"HR HR"}>HR</option>
+                <option value={"MAN Maintenance"}>Maintenance</option>
+                <option value={"QLT Quality"}>Quality</option>
+                <option value={"STO Stores"}>Stores</option>
               </Select>
             </Box>
             <Box>
