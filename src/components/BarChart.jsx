@@ -60,20 +60,14 @@ function BarChart({ chartData }) {
 const fontSize = useBreakpointValue({
     base: 12,
     md: 15
-},{
-  fallback: "md"
 })
 const borderSize = useBreakpointValue({
   base: 3,
   md: 5
-},{
-  fallback: "md"
 })
 const barSize = useBreakpointValue({
   base: 12,
   md: 20
-},{
-  fallback: "md"
 })
 
   ChartJS.defaults.font.size = fontSize;
