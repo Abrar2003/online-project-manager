@@ -192,7 +192,7 @@ function Dashboard() {
             <Heading>{stats.cancelledProjects}</Heading>
           </Stack>
         </Flex>
-        <Text ml={"50px"} fontSize={"25px"}>
+        <Text ml={"50px"} fontSize={["20px", "20px", "25px", "25px"]}>
           Department wise - Total Vs Closed
         </Text>
         <Box
