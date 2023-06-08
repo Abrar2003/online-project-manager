@@ -1,10 +1,6 @@
-import { Divider, Flex, Image, Stack } from "@chakra-ui/react";
+import { Box, Divider, Flex, Image, Stack } from "@chakra-ui/react";
 import React from "react";
-import {
-  Link,
-  useLocation,
-  useNavigate,
-} from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 function Navbar() {
   const location = useLocation();
@@ -21,7 +17,6 @@ function Navbar() {
       <Flex
         w={"60px"}
         style={shadow}
-        p={"0px 5px"}
         h={"100vh"}
         pos={"fixed"}
         left={"0px"}
@@ -32,45 +27,84 @@ function Navbar() {
         display={["none", "none", "none", "flex", "flex"]}
         zIndex={"100"}
       >
-        <Stack gap={"30px"}>
+        <Stack gap={"30px"} w={"100%"}>
           <Link to={"/dashboard"}>
             {location.pathname === "/dashboard" ? (
-              <Image
-                w={["26px", "26px", "34px", "30px"]}
-                src={require("../Assets/Dashboard-active.svg").default}
-              />
+              <Flex
+                justify={"center"}
+                align={"center"}
+                w={"100%"}
+                borderLeft={"3px solid blue"}
+              >
+                <Image
+                  w={["26px", "26px", "34px", "30px"]}
+                  src={require("../Assets/Dashboard-active.svg").default}
+                />
+              </Flex>
             ) : (
-              <Image
-                w={["26px", "26px", "34px", "30px"]}
-                src={require("../Assets/Dashboard.svg").default}
-              />
+              <Flex
+                justify={"center"}
+                align={"center"}
+                w={"100%"}
+              >
+                <Image
+                  w={["26px", "26px", "34px", "30px"]}
+                  src={require("../Assets/Dashboard.svg").default}
+                />
+              </Flex>
             )}
           </Link>
           <Link to={"/project-list"}>
             {location.pathname === "/project-list" ? (
-              <Image
-                w={["26px", "26px", "34px", "30px"]}
-                src={require("../Assets/Project-list-active.svg").default}
-              />
+              <Flex
+                justify={"center"}
+                align={"center"}
+                w={"100%"}
+                borderLeft={"3px solid blue"}
+              >
+                <Image
+                  w={["26px", "26px", "34px", "30px"]}
+                  src={require("../Assets/Project-list-active.svg").default}
+                />
+              </Flex>
             ) : (
-              <Image
-                w={["26px", "26px", "34px", "30px"]}
-                src={require("../Assets/Project-list.svg").default}
-              />
+              <Flex
+                justify={"center"}
+                align={"center"}
+                w={"100%"}
+              >
+                <Image
+                  w={["26px", "26px", "34px", "30px"]}
+                  src={require("../Assets/Project-list.svg").default}
+                />
+              </Flex>
             )}
           </Link>
           <Divider color={"#96a1a9"} />
           <Link to={"/project"}>
             {location.pathname === "/project" ? (
-              <Image
-                w={["26px", "26px", "34px", "30px"]}
-                src={require("../Assets/create-project-active.svg").default}
-              />
+              <Flex
+                justify={"center"}
+                align={"center"}
+                w={"100%"}
+                borderLeft={"3px solid blue"}
+              >
+                <Image
+                  w={["26px", "26px", "34px", "30px"]}
+                  src={require("../Assets/create-project-active.svg").default}
+                />
+              </Flex>
             ) : (
-              <Image
-                w={["26px", "26px", "34px", "30px"]}
-                src={require("../Assets/create-project.svg").default}
-              />
+              <Flex
+                justify={"center"}
+                align={"center"}
+                w={"100%"}
+              >
+                <Image
+                  w={["26px", "26px", "34px", "30px"]}
+                  src={require("../Assets/create-project.svg").default}
+                />
+              </Flex>
             )}
           </Link>
         </Stack>
@@ -96,44 +130,83 @@ function Navbar() {
         display={["flex", "flex", "none", "none"]}
       >
         <Link to={"/dashboard"}>
-          {location.pathname === "/dashboard" ? (
-            <Image
-              w={["26px", "26px", "34px", "30px"]}
-              src={require("../Assets/Dashboard-active.svg").default}
-            />
-          ) : (
-            <Image
-              w={["26px", "26px", "34px", "30px"]}
-              src={require("../Assets/Dashboard.svg").default}
-            />
-          )}
-        </Link>
-        <Link to={"/project"}>
-          {location.pathname === "/project" ? (
-            <Image
-              w={["26px", "26px", "34px", "30px"]}
-              src={require("../Assets/create-project-active.svg").default}
-            />
-          ) : (
-            <Image
-              w={["26px", "26px", "34px", "30px"]}
-              src={require("../Assets/create-project.svg").default}
-            />
-          )}
-        </Link>
-        <Link to={"/project-list"}>
-          {location.pathname === "/project-list" ? (
-            <Image
-              w={["26px", "26px", "34px", "30px"]}
-              src={require("../Assets/Project-list-active.svg").default}
-            />
-          ) : (
-            <Image
-              w={["26px", "26px", "34px", "30px"]}
-              src={require("../Assets/Project-list.svg").default}
-            />
-          )}
-        </Link>
+            {location.pathname === "/dashboard" ? (
+              <Flex
+                justify={"center"}
+                align={"center"}
+                borderBottom={"3px solid blue"}
+                h={"60px"}
+              >
+                <Image
+                  w={["26px", "26px", "34px", "30px"]}
+                  src={require("../Assets/Dashboard-active.svg").default}
+                />
+              </Flex>
+            ) : (
+              <Flex
+                justify={"center"}
+                align={"center"}
+                h={"60px"}
+              >
+                <Image
+                  w={["26px", "26px", "34px", "30px"]}
+                  src={require("../Assets/Dashboard.svg").default}
+                />
+              </Flex>
+            )}
+          </Link>
+          <Link to={"/project-list"}>
+            {location.pathname === "/project-list" ? (
+              <Flex
+                justify={"center"}
+                align={"center"}
+                borderBottom={"3px solid blue"}
+                h={"60px"}
+              >
+                <Image
+                  w={["26px", "26px", "34px", "30px"]}
+                  src={require("../Assets/Project-list-active.svg").default}
+                />
+              </Flex>
+            ) : (
+              <Flex
+                justify={"center"}
+                align={"center"}
+                h={"60px"}
+              >
+                <Image
+                  w={["26px", "26px", "34px", "30px"]}
+                  src={require("../Assets/Project-list.svg").default}
+                />
+              </Flex>
+            )}
+          </Link>
+          <Link to={"/project"}>
+            {location.pathname === "/project" ? (
+              <Flex
+                justify={"center"}
+                align={"center"}
+                borderBottom={"3px solid blue"}
+                h={"60px"}
+              >
+                <Image
+                  w={["26px", "26px", "34px", "30px"]}
+                  src={require("../Assets/create-project-active.svg").default}
+                />
+              </Flex>
+            ) : (
+              <Flex
+                justify={"center"}
+                align={"center"}
+                h={"60px"}
+              >
+                <Image
+                  w={["26px", "26px", "34px", "30px"]}
+                  src={require("../Assets/create-project.svg").default}
+                />
+              </Flex>
+            )}
+          </Link>
       </Flex>
     </>
   );
