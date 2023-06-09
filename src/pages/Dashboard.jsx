@@ -56,7 +56,7 @@ function Dashboard() {
     <>
       <Navbar />
       <Box
-        pt={["50px", "50px", "200px", "200px"]}
+        pt={["00px", "50px", "300px", "300px"]}
         mb={"70px"}
         ml={["0", "0", "60px", "60px"]}
         bgColor="#eef2f5"
@@ -117,9 +117,13 @@ function Dashboard() {
           overflowX={"auto"}
           w={"100%"}
           m={"auto"}
+          mt={"60px"}
           gap={"20px"}
           color={"gray.600"}
           fontWeight={"600"}
+          pos={["none", "none", "fixed", "fixed"]}
+          top={["auto", "auto", "100px", "100px"]}
+          zIndex={"100"}
           css={{
             "&::-webkit-scrollbar": {
               width: "0px",
