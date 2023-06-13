@@ -9,7 +9,7 @@ This is an online project management website that allows users to efficiently ma
 
 - User Authentication: The website provides a secure login page for users to access their accounts and manage their projects.
 - Project Creation: Users can create new projects by filling out a form that captures all the necessary details.
-- Project List: This page displays a list of all the projects along with their relevant information such as project name, deadline, and assigned team members.
+- Project List: This page displays a list of all the projects along with their relevant information such as project name, deadline.
 - Dashboard: The dashboard provides users with analytics and insights on project success rates and a comparison of the total number of projects in each department.
 
 ## Technologies Used
@@ -35,7 +35,6 @@ git clone https://github.com/your-username/project-management-website.git
 
 To install the dependencies, run the following commands:
 ```
-cd project-management-website
 npm install
 ```
 ## Usage
