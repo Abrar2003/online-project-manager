@@ -1,7 +1,8 @@
-# TPL Assignment
+# Online Project Manager
 
-## Email - admin@gmail.com
-## Password - admin
+## Credentials
+### Email - admin@gmail.com
+### Password - admin
 
 This is an online project management website that allows users to efficiently manage projects and track their progress. The website consists of four main pages: Login, Project Creation, Project List, and Dashboard. The front-end of the website is built using ReactJS and Chakra UI, while the backend is developed with Node.js, Express.js, and MongoDB is used as the database.
 
